@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Blog | Create account</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">Simple Blog</a>
+            <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html" class="btn-primary">Log in</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container auth-main">
+        <section class="form-card auth-card">
+            <h1>Create your account</h1>
+            <p class="form-intro">Join the community and share a story of your own.</p>
+
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Choose a username" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Create a password" autocomplete="new-password" required>
+                </div>
+                <button type="submit">Register</button>
+                <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="js/register.js"></script>
+    <script type="module" src="js/nav.js"></script>
+</body>
+</html>
