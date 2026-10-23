@@ -3,42 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog | Create a post</title>
+    <meta name="theme-color" content="#f8f7f4">
+    <title>Write a story — Commonplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="nav-bar">
+    <header class="site-header">
         <div class="nav-container">
-            <a href="index.html" class="brand">Simple Blog</a>
-
-            <nav class="nav-links" aria-label="Main navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="create.html" class="btn-primary" aria-current="page">Create post</a></li>
-                </ul>
+            <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+            <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+                <ul><li><a href="index.html">Discover</a></li><li><a href="login.html">Sign in</a></li></ul>
             </nav>
         </div>
     </header>
-
-    <main class="main-container" style="display: none;">
-        <div class="form-card">
-            <h1>Create a post</h1>
-            <p class="form-intro">Share an idea, a story, or something you have learned.</p>
+    <main class="main-container">
+        <section class="form-card">
+            <p class="eyebrow">Your voice belongs here</p>
+            <h1>Write a story</h1>
+            <p class="form-intro">Make yourself comfortable. We can’t wait to read what’s on your mind.</p>
             <form id="create-form">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title" placeholder="Give your post a title" required>
+                    <label for="title">Story title</label>
+                    <input type="text" name="title" id="title" maxlength="120" placeholder="Give your story a title" required>
                 </div>
-
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option>Culture</option><option>Creativity</option><option>Technology</option><option>Lifestyle</option><option>Stories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Cover image <span class="form-hint">(optional)</span></label>
+                    <input type="file" name="image" id="image" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <p class="form-hint">JPEG, PNG, WebP, or GIF. Maximum file size: 5 MB.</p>
+                    <div class="image-preview" id="image-preview" hidden>
+                        <img id="image-preview-img" alt="Selected cover image preview">
+                        <button type="button" class="image-remove" id="remove-image">Remove selected image</button>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="body">Your story</label>
-                    <textarea name="body" id="body" rows="10" placeholder="Start writing here..." required></textarea>
+                    <textarea name="body" id="body" maxlength="50000" placeholder="Start writing here..." required></textarea>
                 </div>
-
-                <button type="submit">Publish post</button>
+                <p class="form-status" id="form-status" role="status"></p>
+                <button type="submit">Publish story <span aria-hidden="true">↗</span></button>
             </form>
-        </div>
+        </section>
     </main>
+    <footer class="site-footer"><a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a><p>Made for the love of a good story.</p><span>© Commonplace</span></footer>
     <script type="module" src="js/create.js"></script>
+    <script type="module" src="js/nav.js"></script>
 </body>
 </html>

@@ -1,46 +1,59 @@
-import { request } from "./api.js";
-import {Auth} from "./auth.js";
+import { Auth } from './auth.js';
+import { request } from './api.js';
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Strictly check if the user is authenticated before showing the form
-
-    const userRole = Auth.user ? Auth.user.role : null;
-    if (!Auth.isAuthenticated() || (userRole !== 'admin' && userRole !== 'author')) {
-        alert('You must be logged in to create a post.');
+document.addEventListener('DOMContentLoaded', async () => {
+    await Auth.init(true);
+    if (!Auth.isAuthenticated()) {
         window.location.href = 'login.html';
         return;
     }
 
-    // Show the form if the user is authenticated
-
-    const mainContainer = document.querySelector('.main-container');
-    if (mainContainer) {
-        mainContainer.style.display = 'block';
-    }
-
-    //Handle form submission
-
     const form = document.getElementById('create-form');
+    const status = document.getElementById('form-status');
+    const imageInput = document.getElementById('image');
+    const preview = document.getElementById('image-preview');
+    const previewImage = document.getElementById('image-preview-img');
+    let previewUrl = null;
+
+    imageInput.addEventListener('change', () => {
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        const file = imageInput.files[0];
+        if (!file) {
+            preview.hidden = true;
+            previewImage.removeAttribute('src');
+            return;
+        }
+        previewUrl = URL.createObjectURL(file);
+        previewImage.src = previewUrl;
+        preview.hidden = false;
+    });
+    document.getElementById('remove-image').addEventListener('click', () => {
+        imageInput.value = '';
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        previewUrl = null;
+        preview.hidden = true;
+        previewImage.removeAttribute('src');
+    });
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        const title = document.getElementById('title').value;
-        const body = document.getElementById('body').value;
-
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        status.textContent = '';
         try {
+            const formData = new FormData();
+            formData.append('title', document.getElementById('title').value.trim());
+            formData.append('body', document.getElementById('body').value.trim());
+            formData.append('category', document.getElementById('category').value);
+            if (imageInput.files[0]) formData.append('image', imageInput.files[0]);
             const response = await request('/blogs', {
                 method: 'POST',
-                body: JSON.stringify({ title, body })
+                body: formData,
             });
-
-            window.location.href = `index.html?id=${response.data._id}`; // Redirect to feed page after successful creation
+            window.location.href = `article.html?id=${encodeURIComponent(response.data._id)}`;
         } catch (error) {
-            console.error('Error creating post:', error);
-            alert('Error creating post. Please try again.');
+            status.textContent = error.message || 'Your story could not be published. Please try again.';
+            submitButton.disabled = false;
         }
     });
 });

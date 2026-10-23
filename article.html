@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f8f7f4">
+    <title>Story — Commonplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-     <header class="nav-bar">
+    <header class="site-header">
         <div class="nav-container">
-            <a href="index.html" class="brand">Simple Blog</a>
-
-            <nav class="nav-links" aria-label="Main navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="create.html" class="btn-primary" aria-current="page">Create post</a></li>
-                </ul>
+            <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+            <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+                <ul><li><a href="index.html">Discover</a></li><li><a href="login.html">Sign in</a></li><li><a class="btn-primary" href="register.html">Join the community</a></li></ul>
             </nav>
         </div>
     </header>
-
-   <main class="main-container" id="article-container">
-
-        <div class="form-card">
-            <h1>Read Article</h1>
-            <p class="form-intro">Read the full article below.</p>
-            <div id="article-content">
-                <p>Loading article...</p>
-            </div>
-        </div>
-
+    <main class="main-container article-main" id="article-container" aria-live="polite">
+        <a class="article-back" href="index.html">← Back to stories</a>
+        <p class="loading-message">Loading story...</p>
     </main>
+    <footer class="site-footer">
+        <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+        <p>Made for the love of a good story.</p>
+        <span>© Commonplace</span>
+    </footer>
     <script type="module" src="js/article.js"></script>
+    <script type="module" src="js/nav.js"></script>
 </body>
 </html>

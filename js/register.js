@@ -5,11 +5,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (Auth.isAuthenticated()) {
         window.location.href = 'index.html';
+        return;
     }
 
-    document.getElementById('register-form').addEventListener('submit', async (event) => {
+    const form = document.getElementById('register-form');
+    const status = document.getElementById('auth-status');
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
-
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        status.textContent = '';
         try {
             await Auth.register(
                 document.getElementById('username').value,
@@ -18,7 +23,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             );
             window.location.href = 'index.html';
         } catch (error) {
-            alert(error.message);
+            status.textContent = error.message || 'Account creation failed. Please try again.';
+            submitButton.disabled = false;
         }
     });
 });

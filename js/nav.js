@@ -1,4 +1,5 @@
 import { Auth } from './auth.js';
+import { escapeHTML } from './api.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await Auth.init(true);
@@ -9,21 +10,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (Auth.isAuthenticated()) {
+        const adminLink = Auth.user.role === 'admin'
+            ? '<li><a href="admin.html">Admin dashboard</a></li>'
+            : '';
 
-        const role = Auth.user?.role;
-        let roleLinks = '';
-        if (role === 'author' || role === 'admin') {
-            roleLinks += `<li><a href="create.html">Create Blog</a></li>`;
-        }
-        if (role === 'admin') {
-            roleLinks += `<li><a href="admin.html">Admin Panel</a></li>`;
-        }
         navLinks.innerHTML = `
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="create.html">Create</a></li>
-                ${roleLinks}
-                <li><span>Welcome, ${Auth.user.username}</span></li>
+                <li><a href="index.html">Discover</a></li>
+                <li><a href="create.html" class="btn-primary">Write a story</a></li>
+                ${adminLink}
+                <li><span class="nav-user">Hi, ${escapeHTML(Auth.user.username)}</span></li>
                 <li><a href="#" id="logout-link">Logout</a></li>
             </ul>
         `;
@@ -37,9 +33,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         navLinks.innerHTML = `
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html" class="btn-primary">Login</a></li>
-                <li><a href="register.html" class="btn-primary">Register</a></li>
+                <li><a href="index.html">Discover</a></li>
+                <li><a href="login.html">Sign in</a></li>
+                <li><a href="register.html" class="btn-primary">Join the community</a></li>
             </ul>
         `;
     }
