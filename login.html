@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog | Login</title>
+    <meta name="theme-color" content="#f8f7f4">
+    <title>Welcome back — Commonplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="nav-bar">
+    <header class="site-header">
         <div class="nav-container">
-            <a href="index.html" class="brand">Simple Blog</a>
-            <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="register.html" class="btn-primary">Create account</a></li>
-                </ul>
+            <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+            <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+                <ul><li><a href="index.html">Discover</a></li><li><a href="register.html" class="btn-primary">Join the community</a></li></ul>
             </nav>
         </div>
     </header>
-
     <main class="main-container auth-main">
         <section class="form-card auth-card">
+            <p class="eyebrow">Your stories are waiting</p>
             <h1>Welcome back</h1>
-            <p class="form-intro">Log in to continue sharing your stories.</p>
-
+            <p class="form-intro">Sign in to join the conversation and share a story of your own.</p>
             <form id="login-form" class="auth-form">
                 <div class="form-group">
                     <label for="username">Email</label>
@@ -33,12 +33,12 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="Enter your password" autocomplete="current-password" required>
                 </div>
-                <button type="submit">Login</button>
-                <p class="auth-switch">Don't have an account? <a href="register.html">Register</a></p>
+                <p class="form-status" id="auth-status" role="status"></p>
+                <button type="submit">Sign in</button>
+                <p class="auth-switch">New to Commonplace? <a href="register.html">Create an account</a></p>
             </form>
         </section>
     </main>
-
     <script type="module" src="js/login.js"></script>
     <script type="module" src="js/nav.js"></script>
 </body>

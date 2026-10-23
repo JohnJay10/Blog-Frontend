@@ -6,10 +6,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (Auth.isAuthenticated()) {
         window.location.href = 'index.html';
+        return;
     }
 
-    document.getElementById('login-form').addEventListener('submit', async (event) => {
+    const form = document.getElementById('login-form');
+    const status = document.getElementById('auth-status');
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        status.textContent = '';
         try {
             await Auth.login(
                 document.getElementById('username').value,
@@ -17,7 +23,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             );
             window.location.href = 'index.html';
         } catch (error) {
-            alert(error.message);
+            status.textContent = error.message || 'Sign in failed. Please try again.';
+            submitButton.disabled = false;
         }
     });
 });

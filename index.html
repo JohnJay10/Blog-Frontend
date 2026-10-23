@@ -3,37 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog | Home</title>
+    <meta name="theme-color" content="#f8f7f4">
+    <meta name="description" content="Thoughtful stories on creativity, culture, technology, and everyday life.">
+    <title>Commonplace — Stories worth sharing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="nav-bar">
+    <header class="site-header">
         <div class="nav-container">
-           <a href="index.html" class="brand">Simple Blog</a>
-
-           <nav class="nav-links" id ="nav-links">
-            
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <!-- <li><a href="create.html" class="btn-primary">Create Blog</a></li> -->
-                </ul>
+            <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+            <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+                <ul><li><a href="index.html" aria-current="page">Discover</a></li><li><a href="login.html">Sign in</a></li><li><a class="btn-primary" href="register.html">Join the community</a></li></ul>
             </nav>
         </div>
     </header>
 
+    <main class="home-container">
+        <section class="welcome-row">
+            <div>
+                <p class="eyebrow">A little space for big ideas</p>
+                <h1>Stories worth<br><span>staying for.</span></h1>
+                <p class="welcome-copy">A thoughtful corner of the internet for fresh perspectives, curious minds, and the stories that bring us together.</p>
+            </div>
+            <div class="welcome-aside">
+                <span class="welcome-aside-mark" aria-hidden="true">✳</span>
+                <p>Good stories make<br>the world feel smaller.</p>
+            </div>
+        </section>
 
-    <main class="main-container">
-        <h1>Stories worth sharing</h1>
-        <div class="post-list" id="post-list">
-        <p>Loading posts...</p>
-        </div>
+        <section class="featured-section" aria-label="Featured story">
+            <div class="section-kicker"><span>Editor’s pick</span><span class="kicker-line"></span></div>
+            <div id="featured-post" class="featured-placeholder"><p>Finding your next favorite story...</p></div>
+        </section>
 
-        <div>
-            
-        </div>
+        <section class="discover-layout">
+            <div class="feed-column">
+                <div class="feed-heading">
+                    <div>
+                        <p class="eyebrow">The journal</p>
+                        <h2>Find your next read</h2>
+                    </div>
+                    <form id="search-form" class="search-form" role="search">
+                        <label class="sr-only" for="search-input">Search stories</label>
+                        <input id="search-input" type="search" placeholder="Search stories..." autocomplete="off">
+                        <button type="submit" aria-label="Search">⌕</button>
+                    </form>
+                </div>
+                <div class="feed-controls">
+                    <div class="category-filters" id="category-filters" aria-label="Filter stories by category">
+                        <button class="category-chip is-active" type="button" data-category="All stories" aria-pressed="true">All stories</button>
+                        <button class="category-chip" type="button" data-category="Culture" aria-pressed="false">Culture</button>
+                        <button class="category-chip" type="button" data-category="Creativity" aria-pressed="false">Creativity</button>
+                        <button class="category-chip" type="button" data-category="Technology" aria-pressed="false">Technology</button>
+                        <button class="category-chip" type="button" data-category="Lifestyle" aria-pressed="false">Lifestyle</button>
+                    </div>
+                    <div class="sort-tabs" role="tablist" aria-label="Sort stories">
+                        <button type="button" class="sort-tab is-active" data-sort="latest" role="tab" aria-selected="true">Latest</button>
+                        <button type="button" class="sort-tab" data-sort="popular" role="tab" aria-selected="false">Most viewed</button>
+                    </div>
+                </div>
+                <div class="post-list" id="post-list" aria-live="polite"><p class="loading-message">Loading the latest stories...</p></div>
+            </div>
+            <aside class="sidebar">
+                <section class="sidebar-card trending-card" aria-labelledby="trending-title">
+                    <div class="sidebar-heading"><span class="trending-star">✳</span><h2 id="trending-title">Trending now</h2></div>
+                    <div id="trending-list" class="trending-list"><p class="sidebar-muted">Gathering the most-read stories...</p></div>
+                </section>
+                <section class="sidebar-note">
+                    <p class="eyebrow">A note from us</p>
+                    <p>Ideas are better when they’re shared. Pull up a chair, find a new point of view, and add your voice.</p>
+                    <a href="register.html" class="text-link">Become a contributor <span aria-hidden="true">↗</span></a>
+                </section>
+            </aside>
+        </section>
     </main>
-    
-
+    <footer class="site-footer">
+        <a href="index.html" class="brand"><span class="brand-mark">c.</span> Commonplace</a>
+        <p>Made for the love of a good story.</p>
+        <span>© <span id="year"></span> Commonplace</span>
+    </footer>
     <script type="module" src="js/feed.js"></script>
     <script type="module" src="js/nav.js"></script>
 </body>
